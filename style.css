@@ -1,0 +1,26 @@
+h3 {
+    text-align: center;
+}
+
+h1 {
+    display: inline;
+    margin: 0px;
+}
+
+.header {
+    display: inline-flex;
+    vertical-align: bottom;
+    align-items: center;
+}
+
+.header i {
+    display: none;
+}
+
+.inp-custom {
+    margin: 0px !important;
+}
+
+.inp-custom * {
+    margin: 0px !important;
+}
