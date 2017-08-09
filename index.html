@@ -2,6 +2,7 @@
 <html>
     <head>
         <!-- Import materialize stuff -->
+        <script src="riot+compiler.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,44 +13,70 @@
     <body>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script src='https://unpkg.com/vue@2.4.2'></script>
-        <ul id="slide-out" class="side-nav fixed">
-            <li><h3>gradu8</h3></li>
-            <li>
-                <div class='row'>
-                <div class="input-field col s12">
-                    <select>
-                        <option value="1">Plan 1</option>
-                        <option value="add">Add New Plan</option>
-                    </select>
-                </div>
-                </div>
-            </li>
-            <!--<li class="search">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Search</label>
-                    </div>
-                </div>
-            </li>-->
-            <li>
-                <a class="red waves-effect waves-light btn">Print</a>
-            </li>
-        </ul>
-        <div class="container">
-            <div class='year'>
-            <h1>Year One</h1>
-            <div id="main" class='row'>
-                <semester time='Fall'></semester>
-                <semester time='Spring'></semester>
-                <semester time='Winter'></semester>
-                <semester time='Summer'></semester>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">gradu8</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#">Import</a></li>
+                    <li><a href="#">Export</a></li>
+                    <li><a href="#">Print</a></li>
+                </ul>
             </div>
-            <div id="add" class='row'>
-                <a class="red waves-effect waves-light btn" @click="test">Add year</a>
+        </nav>
+        <div class="row">
+            <div class='col s4'>
+                <h3> Requirements </h3>
+            </div>
+            <div class='col s8'>
+            <div class='year'>
+            <h3>Year One</h3>
+            <div id="main" class='row'>
+                <dtable class='fall col s3'></dtable>
+                <dtable class='spring col s3'></dtable>
+                <dtable class='winter col s3'></dtable>
+                <dtable class='summer col s3'></dtable>
+            </div>
             </div>
         </div>
-        <script src='main.js'></script>
+
+        <script src="tags/dtable.tag" type="riot/tag"></script>
+    <script>
+        var idCounter = 0;
+        riot.mount('.fall', opts = {
+                                    season: "Fall",
+                                    courses: [{
+                                        course_id: "MATH140",
+                                        credits: 4,
+                                        edit: false
+                                    }, {
+                                        course_id: "CMSC132",
+                                        credits: 3,
+                                        edit: false
+                                    }, {
+                                        course_id: "CPSS100",
+                                        credits: 2,
+                                        edit: false
+                                    }]
+                                });
+        riot.mount('.spring', opts = {
+                                    season: "Spring",
+                                    courses: [{
+                                        course_id: "MATH141",
+                                        credits: 4,
+                                        edit: false
+                                    }, {
+                                        course_id: "CMSC216",
+                                        credits: 3,
+                                        edit: false
+                                    }, {
+                                        course_id: "CPSS101",
+                                        credits: 2,
+                                        edit: false
+                                    }]
+                                    });
+        riot.mount('.winter', opts = {season: "Winter"});
+        riot.mount('.summer', opts = {season: "Summer"});
+    </script>
+
     </body>
   </html>

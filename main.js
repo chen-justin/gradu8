@@ -1,16 +1,3 @@
-function addYear() {
-    console.log("hi")
-}
-
-new Vue({
-    el: "#add",
-    methods: {
-        test: function() {
-            console.log("hi")
-        }
-    }
-});
-
 Vue.component('display', {
     template: `
         <div>
@@ -33,7 +20,13 @@ Vue.component('display', {
 });
 
 Vue.component('tr-d', {
-
+    template: `
+        <tr >
+            <td>{{course.course_id}}</td>
+            <td>{{course.credits}}</td>
+        </tr>
+    `,
+    props: ['course']
 });
 
  $(document).ready(function() {
@@ -49,12 +42,7 @@ Vue.component('semester', {
                         <th>Class</th>
                         <th>Credits</th>
                     </tr>
-                    <tr v-for="course in courses">
-                        <td>
-                            {{course.course_id}}
-                        </td>
-                        <td>{{course.credits}}</td>
-                    </tr>
+                    <tr v-for="course in courses" is="tr-d" v-bind:course="course" v-bind:id="course.course_id"></tr>
                     </tbody>
                 </table>
             </div>`,
