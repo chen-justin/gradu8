@@ -28,21 +28,48 @@
                 <h3> Requirements </h3>
             </div>
             <div class='col s8'>
-            <div class='year'>
-            <h3>Year One</h3>
-            <div id="main" class='row'>
-                <dtable class='fall col s3'></dtable>
-                <dtable class='spring col s3'></dtable>
-                <dtable class='winter col s3'></dtable>
-                <dtable class='summer col s3'></dtable>
-            </div>
+                <div class='year' id='freshman'>
+                    <h3>Freshman</h3>
+                    <div id="main" class='row'>
+                        <dtable class='fall col s3'></dtable>
+                        <dtable class='spring col s3'></dtable>
+                        <dtable class='winter col s3'></dtable>
+                        <dtable class='summer col s3'></dtable>
+                    </div>
+                </div>
+                <div class='year' id='sophomore'>
+                    <h3>Sophomore</h3>
+                    <div id="main" class='row'>
+                        <dtable class='fall col s3'></dtable>
+                        <dtable class='spring col s3'></dtable>
+                        <dtable class='winter col s3'></dtable>
+                        <dtable class='summer col s3'></dtable>
+                    </div>
+                </div>
+                <div class='year' id='junior'>
+                    <h3>Junior</h3>
+                    <div id="main" class='row'>
+                        <dtable class='fall col s3'></dtable>
+                        <dtable class='spring col s3'></dtable>
+                        <dtable class='winter col s3'></dtable>
+                        <dtable class='summer col s3'></dtable>
+                    </div>
+                </div>
+                <div class='year' id='senior'>
+                    <h3>Senior</h3>
+                    <div id="main" class='row'>
+                        <dtable class='fall col s3'></dtable>
+                        <dtable class='spring col s3'></dtable>
+                        <dtable class='winter col s3'></dtable>
+                        <dtable class='summer col s3'></dtable>
+                    </div>
+                </div>
             </div>
         </div>
-
         <script src="tags/dtable.tag" type="riot/tag"></script>
-    <script>
-        var idCounter = 0;
-        riot.mount('.fall', opts = {
+        <script>
+            var idCounter = 0;
+            riot.mount('.fall', opts = {
                                     season: "Fall",
                                     courses: [{
                                         course_id: "MATH140",
@@ -58,7 +85,7 @@
                                         edit: false
                                     }]
                                 });
-        riot.mount('.spring', opts = {
+            riot.mount('.spring', opts = {
                                     season: "Spring",
                                     courses: [{
                                         course_id: "MATH141",
@@ -74,9 +101,34 @@
                                         edit: false
                                     }]
                                     });
-        riot.mount('.winter', opts = {season: "Winter"});
-        riot.mount('.summer', opts = {season: "Summer"});
-    </script>
-
+            riot.mount('.winter', opts = {season: "Winter",
+                                    courses: [{
+                                        course_id: "MATH141",
+                                        credits: 4,
+                                        edit: false
+                                    }, {
+                                        course_id: "CMSC216",
+                                        credits: 3,
+                                        edit: false
+                                    }, {
+                                        course_id: "CPSS101",
+                                        credits: 2,
+                                        edit: false
+                                    }]});
+            riot.mount('.summer', opts = {season: "Summer",
+                                    courses: [{
+                                        course_id: "MATH141",
+                                        credits: 4,
+                                        edit: false
+                                    }, {
+                                        course_id: "CMSC216",
+                                        credits: 3,
+                                        edit: false
+                                    }, {
+                                        course_id: "CPSS101",
+                                        credits: 2,
+                                        edit: false
+                                    }]});
+        </script>
     </body>
   </html>

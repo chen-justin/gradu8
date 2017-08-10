@@ -16,8 +16,9 @@
         <tr class='empty'><td colspan="3">No classes added</td></tr>
     </table>
     <script>
+        var $n;
         this.on('mount', function() {
-            var $n = $(this.root);
+            $n = $(this.root);
 
             $n.click(function(){
                 console.log('av');
@@ -25,6 +26,7 @@
 
             $n.find('tr').on('dragstart', e => {
                 e.originalEvent.dataTransfer.setData('text/plain', e.target.id);
+                this.updated = false;
 	        });
 
             function cancel(e) {
@@ -47,9 +49,12 @@
                 } else {
                     cancel(e);
                 }
-
+                this.calcCredits();
+                riot.update();
                 e.originalEvent.dataTransfer.clearData();
             });
+
+            this.calcCredits();
         });
 
         this.courses = opts.courses;
@@ -61,11 +66,26 @@
         }
 
         this.calcCredits = function () {
-            console.log(this);
+            var sum = 0;
+            $.each($n.find('tr'), function(i, val) {
+
+                if($(this).attr('draggable')) {
+                    sum += parseInt($(this).find(':nth-child(2)')[0].innerHTML);
+                }
+            });
+
+            this.credits = sum;
+            this.update();
         }
 
-        this.credits = 3;
-        this.calcCredits();
+        this.on('update', () => {
+            if(!this.updated) {
+                this.updated = true;
+                this.calcCredits();
+            }
+        })
+        this.updated = false;
+        this.credits = 0;
     </script>
     <style>
         table {
