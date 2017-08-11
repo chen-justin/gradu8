@@ -28,3 +28,8 @@ nav {
 .brand-logo {
     margin-left: 10px;
 }
+
+.modal {
+    width: 25vw !important;
+    height: 50vh !important;
+}

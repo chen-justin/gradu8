@@ -1,6 +1,6 @@
 <dtable>
     <h5>{ opts.season } - { credits } credits</h5>
-    <table class="striped">
+    <table class="highlight">
         <thead>
             <tr>
                 <th>Course</th>
@@ -17,6 +17,10 @@
     </table>
     <script>
         var $n;
+        this.courses = opts.courses;
+        this.updated = false;
+        this.credits = 0;
+
         this.on('mount', function() {
             $n = $(this.root);
 
@@ -55,9 +59,17 @@
             });
 
             this.calcCredits();
-        });
 
-        this.courses = opts.courses;
+            $(document).ready(function() {
+                $.each($n.find('tr'), function(i, val) {
+                    if($(this).attr('draggable')) {
+                        $(this).on('dblclick', function() {
+                            $('#edit-course').modal('open');
+                        });
+                    }
+                });
+            });
+        });
 
         this.generateID = function() {
             idCounter++;
@@ -83,9 +95,7 @@
                 this.updated = true;
                 this.calcCredits();
             }
-        })
-        this.updated = false;
-        this.credits = 0;
+        });
     </script>
     <style>
         table {

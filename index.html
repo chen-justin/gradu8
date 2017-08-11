@@ -66,69 +66,87 @@
                 </div>
             </div>
         </div>
+
+        <div id="edit-course" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Edit Course</h4>
+
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text" id="course-id-input" class="autocomplete">
+                        <label for="course-id-input">Course ID</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input type="number" id="course-credits-input">
+                        <label for="course-id-input">Credits</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input type="number" id="course-grade-input">
+                        <label for="course-id-input">Grade</label>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="input-field col s12">
+                        <textarea id="notes" class="materialize-textarea"></textarea>
+                        <label for="notes">Personal Notes</label>
+                    </div>
+                </div>
+
+
+        </div>
+        <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+            </div>
+        </div>
+
         <script src="tags/dtable.tag" type="riot/tag"></script>
         <script>
+            var placeholder = [{
+                                course_id: "MATH140",
+                                credits: 4,
+                                edit: false
+                                }, {
+                                course_id: "CMSC132",
+                                credits: 3,
+                                edit: false
+                                }, {
+                                course_id: "CPSS100",
+                                credits: 2,
+                                edit: false
+                            }];
             var idCounter = 0;
             riot.mount('.fall', opts = {
                                     season: "Fall",
-                                    courses: [{
-                                        course_id: "MATH140",
-                                        credits: 4,
-                                        edit: false
-                                    }, {
-                                        course_id: "CMSC132",
-                                        credits: 3,
-                                        edit: false
-                                    }, {
-                                        course_id: "CPSS100",
-                                        credits: 2,
-                                        edit: false
-                                    }]
+                                    courses: placeholder
                                 });
             riot.mount('.spring', opts = {
                                     season: "Spring",
-                                    courses: [{
-                                        course_id: "MATH141",
-                                        credits: 4,
-                                        edit: false
-                                    }, {
-                                        course_id: "CMSC216",
-                                        credits: 3,
-                                        edit: false
-                                    }, {
-                                        course_id: "CPSS101",
-                                        credits: 2,
-                                        edit: false
-                                    }]
+                                    courses: placeholder
                                     });
-            riot.mount('.winter', opts = {season: "Winter",
-                                    courses: [{
-                                        course_id: "MATH141",
-                                        credits: 4,
-                                        edit: false
-                                    }, {
-                                        course_id: "CMSC216",
-                                        credits: 3,
-                                        edit: false
-                                    }, {
-                                        course_id: "CPSS101",
-                                        credits: 2,
-                                        edit: false
-                                    }]});
+            riot.mount('.winter', opts = {
+                                    season: "Winter",
+                                    courses: placeholder});
             riot.mount('.summer', opts = {season: "Summer",
-                                    courses: [{
-                                        course_id: "MATH141",
-                                        credits: 4,
-                                        edit: false
-                                    }, {
-                                        course_id: "CMSC216",
-                                        credits: 3,
-                                        edit: false
-                                    }, {
-                                        course_id: "CPSS101",
-                                        credits: 2,
-                                        edit: false
-                                    }]});
+                                    courses: placeholder});
+
+            $(document).ready(function(){
+                $('.modal').modal();
+
+                $('input.autocomplete').autocomplete({
+                data: {
+                    "CMSC131": null,
+                    "CMSC132": null,
+                    "CMSC131": null,
+                    "CMSC216": null,
+                    "CMSC250": null,
+                    "MATH140": null,
+                    "MATH141": null
+                },
+                minLength: 2,
+                });
+            });
         </script>
     </body>
   </html>
