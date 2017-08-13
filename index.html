@@ -28,50 +28,16 @@
                 <h3> Requirements </h3>
             </div>
             <div class='col s8'>
-                <div class='year' id='freshman'>
-                    <h3>Freshman</h3>
-                    <div id="main" class='row'>
-                        <dtable class='fall col s3'></dtable>
-                        <dtable class='spring col s3'></dtable>
-                        <dtable class='winter col s3'></dtable>
-                        <dtable class='summer col s3'></dtable>
-                    </div>
-                </div>
-                <div class='year' id='sophomore'>
-                    <h3>Sophomore</h3>
-                    <div id="main" class='row'>
-                        <dtable class='fall col s3'></dtable>
-                        <dtable class='spring col s3'></dtable>
-                        <dtable class='winter col s3'></dtable>
-                        <dtable class='summer col s3'></dtable>
-                    </div>
-                </div>
-                <div class='year' id='junior'>
-                    <h3>Junior</h3>
-                    <div id="main" class='row'>
-                        <dtable class='fall col s3'></dtable>
-                        <dtable class='spring col s3'></dtable>
-                        <dtable class='winter col s3'></dtable>
-                        <dtable class='summer col s3'></dtable>
-                    </div>
-                </div>
-                <div class='year' id='senior'>
-                    <h3>Senior</h3>
-                    <div id="main" class='row'>
-                        <dtable class='fall col s3'></dtable>
-                        <dtable class='spring col s3'></dtable>
-                        <dtable class='winter col s3'></dtable>
-                        <dtable class='summer col s3'></dtable>
-                    </div>
-                </div>
+                <year id='freshman'></year>
+                <year id='sophomore'></year>
+                <year id='junior'></year>
+                <year id='senior'></year>
             </div>
         </div>
 
         <div id="edit-course" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Edit Course</h4>
-
-
                 <div class="row">
                     <div class="input-field col s6">
                         <input type="text" id="course-id-input" class="autocomplete">
@@ -92,16 +58,15 @@
                         <label for="notes">Personal Notes</label>
                     </div>
                 </div>
-
-
-        </div>
-        <div class="modal-footer">
+            </div>
+            <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
             </div>
         </div>
 
         <script src="tags/dtable.tag" type="riot/tag"></script>
+        <script src="tags/year.tag" type="riot/tag"></script>
         <script>
             var placeholder = [{
                                 course_id: "MATH140",
@@ -117,20 +82,10 @@
                                 edit: false
                             }];
             var idCounter = 0;
-            riot.mount('.fall', opts = {
-                                    season: "Fall",
-                                    courses: placeholder
-                                });
-            riot.mount('.spring', opts = {
-                                    season: "Spring",
-                                    courses: placeholder
-                                    });
-            riot.mount('.winter', opts = {
-                                    season: "Winter",
-                                    courses: placeholder});
-            riot.mount('.summer', opts = {season: "Summer",
-                                    courses: placeholder});
-
+            riot.mount('#freshman', opts = {id:'freshman'});
+            riot.mount('#sophomore', opts = {id:'sophomore'});
+            riot.mount('#junior', opts = {id:'junior'});
+            riot.mount('#senior', opts = {id:'senior'});
             $(document).ready(function(){
                 $('.modal').modal();
 
