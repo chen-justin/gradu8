@@ -8,7 +8,7 @@
                 <th>Grade</th>
             </tr>
         </thead>
-        <tr draggable="true" each={ courses } id = { this.generateID() }>
+        <tr draggable="true" each={ courses } id = { generateID() } data-notes = { notes }>
             <td>{ course_id }</td>
             <td>{ credits }</td>
             <td>{ grade }</td>
@@ -24,6 +24,13 @@
         this.on('mount', function() {
             $n = $(this.root);
 
+            function cancel(e) {
+                if (e.preventDefault) {
+                    e.preventDefault();
+                }
+                return false;
+            }
+
             $n.click(function(){
                 console.log('av');
             });
@@ -33,16 +40,8 @@
                 this.updated = false;
 	        });
 
-            function cancel(e) {
-                if (e.preventDefault) {
-                    e.preventDefault();
-                }
-                return false;
-            }
-
             $n.on('dragover', cancel);
             $n.on('dragenter', cancel);
-
             $n.on('drop', e => {
                 var data = e.originalEvent.dataTransfer.getData("text");
 
@@ -64,18 +63,16 @@
                 $.each($n.find('tr'), function(i, val) {
                     if($(this).attr('draggable')) {
                         $(this).on('dblclick', function() {
+                            $('#course-id-input').val($(this).find(':nth-child(1)')[0].innerHTML);
+                            $('#course-credits-input').val($(this).find(':nth-child(2)')[0].innerHTML);
+                            $('#course-grade-input').val($(this).find(':nth-child(3)')[0].innerHTML);
+                            $('#notes').val(($(this).data('notes')));
                             $('#edit-course').modal('open');
                         });
                     }
                 });
             });
         });
-
-        this.generateID = function() {
-            idCounter++;
-
-            return "a" + idCounter;
-        }
 
         this.calcCredits = function () {
             var sum = 0;
@@ -114,7 +111,5 @@
         tr {
             width: 100%;
         }
-
-
     </style>
 </dtable>
